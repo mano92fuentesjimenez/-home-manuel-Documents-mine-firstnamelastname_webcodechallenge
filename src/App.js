@@ -7,6 +7,7 @@ import {combineReducers, createStore, applyMiddleware} from "redux";
 import createSagaMiddleware from 'redux-saga';
 import sagas from './sagas';
 import api from './api';
+import PostList from "./components/post-list/post-list";
 
 const reducer = combineReducers(reducers);
 
@@ -20,6 +21,7 @@ function App() {
   return (
     <Provider store={store}>
       <TopBar/>
+      <PostList/>
     </Provider>
   );
 }
