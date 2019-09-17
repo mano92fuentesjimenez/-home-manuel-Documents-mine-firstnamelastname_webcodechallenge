@@ -9,9 +9,9 @@ const TopBar = ({ value, onTextChange }) => {
   const onChange = text => onTextChange(text);
 
   return <div className="container blue-background">
-    <div className="content-container">
+    <div className="content-container top-bar">
       <span className="top-bar-text"> Reddit</span>
-      <SearchInput onChange={onChange} value={value}/>
+      <SearchInput className="top-bar-search-input" onChange={onChange} value={value}/>
     </div>
   </div>
 };
