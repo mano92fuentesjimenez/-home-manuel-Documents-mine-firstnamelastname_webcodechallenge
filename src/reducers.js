@@ -1,5 +1,5 @@
-import { reducer as topBarReducer } from './components/top-bar'
+import { reducer as topBarReducer, statePath as topBarStatePath } from './components/top-bar'
 
 export default {
-  topBarReducer,
+  [topBarStatePath]: topBarReducer,
 }
