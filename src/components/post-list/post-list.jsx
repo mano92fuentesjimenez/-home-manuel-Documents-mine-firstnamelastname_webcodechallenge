@@ -6,9 +6,11 @@ import { selectPosts } from "../top-bar/selectors";
 const PostList = ({ posts }) => {
 
   return <div className="container">
-    <ul>
-      { posts && posts.map(post => (<li>{post.title}</li>))}
-    </ul>
+    <div className="content-container">
+      <ul>
+        { posts && posts.map(post => (<li>{post.title}</li>))}
+      </ul>
+    </div>
   </div>
 };
 
