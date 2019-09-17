@@ -1,4 +1,4 @@
-import { SEARCH_TEXT_CHANGED } from "./constants";
+import { SEARCH_TEXT_CHANGED, SEARCH_COMMAND } from "./constants";
 import { onLoadPosts, onSearchEnd, onSearchError, onSearchStarted } from './actions';
 import { takeLatest, call, delay, put } from 'redux-saga/effects';
 import _ from 'lodash';
@@ -27,4 +27,5 @@ function* onTextChanged(api, action) {
 
 export default function* ({ api }) {
   yield takeLatest(SEARCH_TEXT_CHANGED, onTextChanged, api);
+  yield takeLatest(SEARCH_COMMAND, searchPosts, api);
 };

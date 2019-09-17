@@ -3,7 +3,8 @@ import {
   SEARCH_TEXT_CHANGED,
   SEARCHING_POSTS_END,
   SEARCHING_POSTS_ERROR,
-  SEARCHING_POSTS_START
+  SEARCHING_POSTS_START,
+  SEARCH_COMMAND,
 } from "./constants";
 
 export const onTextChange = (text) => ({
@@ -27,4 +28,9 @@ export const onSearchError = (error) => ({
 export const onLoadPosts = (posts) => ({
   type: LOAD_POSTS,
   payload: posts,
+});
+
+export const onSearchCommand = (text) => ({
+  type: SEARCH_COMMAND,
+  payload: text,
 });
