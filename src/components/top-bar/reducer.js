@@ -17,24 +17,29 @@ export default function(state = initialState, action) {
   switch (action.type) {
     case SEARCHING_POSTS_START:
       return {
+        ...state,
         searching: true,
       };
     case SEARCHING_POSTS_END:
       return {
+        ...state,
         searching: false,
       };
     case LOAD_POSTS:{
       return {
+        ...state,
         posts: action.payload,
       }
     }
     case SEARCHING_POSTS_ERROR:
       return {
+        ...state,
         searching: false,
         error: action.payload,
       } ;
     case SEARCH_TEXT_CHANGED:
       return {
+        ...state,
         searchText: action.payload,
       };
     default:
