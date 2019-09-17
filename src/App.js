@@ -9,6 +9,8 @@ import sagas from './sagas';
 import api from './api';
 import PostList from "./components/post-list/post-list";
 
+import { onSearchCommand } from './components/top-bar/actions';
+
 const reducer = combineReducers(reducers);
 
 function App() {
@@ -18,6 +20,9 @@ function App() {
     api,
   };
   sagas.forEach( saga => sagaMiddleware.run(saga, services));
+
+  //It is a requirement
+  store.dispatch(onSearchCommand('funny'));
   return (
     <Provider store={store}>
       <TopBar/>

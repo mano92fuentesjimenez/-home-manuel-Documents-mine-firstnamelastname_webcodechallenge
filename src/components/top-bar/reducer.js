@@ -7,7 +7,7 @@ import {
 } from "./constants";
 
 const initialState = {
-  searchText: '',
+  searchText: 'funny',
   posts: [],
   searching: false,
   error: null,
