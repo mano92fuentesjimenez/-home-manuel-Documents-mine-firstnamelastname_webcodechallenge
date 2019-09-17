@@ -5,7 +5,7 @@ import { selectPosts } from "../top-bar/selectors";
 
 const PostList = ({ posts }) => {
 
-  return <div className="posts-container">
+  return <div className="container">
     <ul>
       { posts && posts.map(post => (<li>{post.title}</li>))}
     </ul>

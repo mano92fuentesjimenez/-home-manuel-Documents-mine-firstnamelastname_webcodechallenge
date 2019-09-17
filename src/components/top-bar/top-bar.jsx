@@ -1,5 +1,5 @@
 import React from 'react';
-import './top-bar.sass';
+import './top-bar.scss';
 import { SearchInput } from "./components/searchInput";
 import { connect } from 'react-redux';
 import { selectSearchText } from "./selectors";
@@ -8,7 +8,7 @@ import { onTextChange } from "./actions";
 const TopBar = ({ value, onTextChange }) => {
   const onChange = text => onTextChange(text);
 
-  return <div className="top-bar-container">
+  return <div className="container blue-background">
     <div className="top-bar-content-container">
       <span className="top-bar-text"> Reddit</span>
       <SearchInput onChange={onChange} value={value}/>
