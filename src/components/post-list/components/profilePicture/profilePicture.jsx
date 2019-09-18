@@ -1,7 +1,11 @@
 import React from 'react';
-import classnames from 'classnames';
 import './profilePicture.scss';
 
-export const ProfilePicture = ({ photoUrl, classNames }) =>
-  (<img src={photoUrl} className={classnames('profile-picture', classNames)}/>);
-
+const fallbackImage = '/WarningSign.jpg';
+const invalidPhotos = ['', 'default', 'self', null, undefined];
+export const ProfilePicture = ({ photoUrl }) =>{
+  const imageSrc = invalidPhotos.includes(photoUrl) ? fallbackImage : photoUrl;
+  return  (
+    <img src={imageSrc} className={'profile-picture'}/>
+  )
+}
