@@ -1,5 +1,5 @@
 import React from 'react';
-import './top-bar.scss';
+import './post-action.scss';
 import { connect } from 'react-redux';
 import { selectOpenPost } from "./selectors";
 import ReactModal from 'react-modal';
@@ -7,8 +7,9 @@ import ReactModal from 'react-modal';
 const PostAction = ({ openPost }) => {
 
   return (<ReactModal
-    open={openPost !== null}
-  > Hello </ReactModal>);
+    isOpen={openPost !== null}
+    className="blank"
+  > <span>Hello</span> </ReactModal>);
 };
 
 const mapStateToProps = state => ({

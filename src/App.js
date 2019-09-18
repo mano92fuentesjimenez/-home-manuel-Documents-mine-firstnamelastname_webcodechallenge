@@ -1,13 +1,15 @@
 import React from 'react';
 import './App.css';
-import TopBar from './components/top-bar';
 import { Provider } from 'react-redux'
 import reducers from './reducers';
 import {combineReducers, createStore, applyMiddleware, compose} from "redux";
 import createSagaMiddleware from 'redux-saga';
 import sagas from './sagas';
 import api from './api';
+
+import TopBar from './components/top-bar';
 import PostList from "./components/post-list/post-list";
+import PostActions from './components/post-action'
 
 import { onSearchCommand } from './components/top-bar/actions';
 
@@ -31,6 +33,7 @@ function App() {
     <Provider store={store}>
       <TopBar/>
       <PostList/>
+      <PostActions/>
     </Provider>
   );
 }
