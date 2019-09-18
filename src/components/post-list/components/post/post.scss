@@ -1,7 +1,14 @@
 .post-container {
-  height: 100px;
   display: flex;
   margin: 19px 0px;
-  align-items: center;
-  border-bottom: solid #cecece 2px;
+  padding: 20px 0;
+  border-bottom: solid #cecece 1px;
+  .post-text-container {
+    width: calc(100% - 91px);
+    margin-left: 10px;
+    .post-bottom-bar {
+      margin-top: 5px;
+      display: flex;
+    }
+  }
 }
