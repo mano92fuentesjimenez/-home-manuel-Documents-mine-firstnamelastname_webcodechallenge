@@ -1,9 +1,8 @@
 import React from 'react';
-import './up-votes.scss';
 
 export const UpVotes = ({post}) =>
   (
-    <div className='up-votes'>
+    <div className='icon-info'>
       <img src='/WarningSign.jpg'/>
       <span>{post.ups} ups</span>
     </div>

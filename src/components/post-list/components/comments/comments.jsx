@@ -1,9 +1,8 @@
 import React from 'react';
-import './comments.scss';
 
 export const Comments = ({post}) =>
   (
-    <div className='comments'>
+    <div className='icon-info'>
       <img src='/WarningSign.jpg'/>
       <span>{post.num_comments} Comments</span>
     </div>
