@@ -1,6 +1,5 @@
 .post-container {
   display: flex;
-  margin: 19px 0px;
   padding: 20px 10px;
   border-bottom: solid #cecece 1px;
   .post-text-container {
@@ -11,4 +10,8 @@
       display: flex;
     }
   }
+}
+
+.post-mouse-in {
+  background: white;
 }
