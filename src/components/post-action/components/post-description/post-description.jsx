@@ -1,9 +1,9 @@
 import React from 'react';
-import { ProfilePicture } from "../../../sharedComponents/profilePicture/profilePicture";
-import { Author } from "../../../sharedComponents/author/author";
-import { UpVotes } from "../../../sharedComponents/up-votes/up-votes";
-import { Comments } from "../../../sharedComponents/comments/comments";
-import { Title } from "../../../sharedComponents/title/title";
+import { ProfilePicture } from "../../../../sharedComponents/profilePicture/profilePicture";
+import { Author } from "../../../../sharedComponents/author/author";
+import { UpVotes } from "../../../../sharedComponents/up-votes/up-votes";
+import { Comments } from "../../../../sharedComponents/comments/comments";
+import { Title } from "../../../../sharedComponents/title/title";
 import './post-description.scss'
 
 export const PostDescription = ({ post }) => {
