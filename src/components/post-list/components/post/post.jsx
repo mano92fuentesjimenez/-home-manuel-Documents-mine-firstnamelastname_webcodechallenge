@@ -1,10 +1,10 @@
 import React, {useState} from "react";
-import { ProfilePicture } from "../profilePicture/profilePicture";
+import { ProfilePicture } from "../../../../sharedComponents/profilePicture/profilePicture";
 import { openPostAction } from "../../../post-action/actions";
-import { Author } from "../author/author";
-import { Title } from "../title/title";
-import { Comments } from "../comments/comments";
-import { UpVotes } from "../up-votes/up-votes";
+import { Author } from "../../../../sharedComponents/author/author";
+import { Title } from "../../../../sharedComponents/title/title";
+import { Comments } from "../../../../sharedComponents/comments/comments";
+import { UpVotes } from "../../../../sharedComponents/up-votes/up-votes";
 import { DownVotes } from "../down-votes/down-votes";
 import classnames from 'classnames';
 import { connect } from 'react-redux';
@@ -19,7 +19,7 @@ const PostComponent = ({ post, onOpenPostActions }) => {
       onMouseLeave={() => changeMouseEntered(false)}
       onClick={() => onOpenPostActions(post)}
     >
-      <ProfilePicture photoUrl={post.thumbnail}/>
+      <ProfilePicture post={post}/>
       <div className='post-text-container'>
         <Author post={post}/>
         <Title post={post}/>

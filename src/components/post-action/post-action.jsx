@@ -3,13 +3,17 @@ import './post-action.scss';
 import { connect } from 'react-redux';
 import { selectOpenPost } from "./selectors";
 import ReactModal from 'react-modal';
+import { PostDescription } from "./post-description/post-description";
 
 const PostAction = ({ openPost }) => {
 
-  return (<ReactModal
-    isOpen={openPost !== null}
-    className="blank"
-  > <span>Hello</span> </ReactModal>);
+  return (
+    <ReactModal
+      isOpen={openPost !== null}
+      className="modal-blank"
+    >
+      <PostDescription post={openPost}/>
+    </ReactModal>);
 };
 
 const mapStateToProps = state => ({
