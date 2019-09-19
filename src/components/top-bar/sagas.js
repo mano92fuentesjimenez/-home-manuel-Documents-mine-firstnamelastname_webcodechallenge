@@ -11,7 +11,7 @@ function* searchPosts(api, action) {
     yield put(onSearchEnd());
 
     if (postData.data) {
-      const posts = _.map(postData.data.data.children, data => _.pick(data.data, ['title', 'author', 'num_comments', 'thumbnail', 'ups', 'downs']));
+      const posts = _.map(postData.data.data.children, data => _.pick(data.data, ['title', 'author', 'num_comments', 'thumbnail', 'ups', 'downs', 'permalink']));
       yield put(onLoadPosts(posts));
     }
   }

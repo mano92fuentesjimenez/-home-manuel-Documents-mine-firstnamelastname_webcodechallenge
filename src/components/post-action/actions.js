@@ -1,4 +1,4 @@
-import { OPEN_POST_ACTIONS, POST_ANIMATION_TOGGLE, POST_ANIMATION_END } from "./constants";
+import { OPEN_POST_ACTIONS, POST_ANIMATION_TOGGLE, POST_ACTION } from "./constants";
 
 export const openPostAction = (post) => ({
   type: OPEN_POST_ACTIONS,
@@ -10,3 +10,7 @@ export const postAnimatingToogle = (on) => ({
   payload: on,
 });
 
+export const postAction = ({ actionName, post}) => ({
+  type: POST_ACTION,
+  payload: { actionName, post },
+})
