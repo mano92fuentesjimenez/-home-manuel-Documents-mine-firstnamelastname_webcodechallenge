@@ -5,6 +5,7 @@ import { selectOpenPost } from "./selectors";
 import ReactModal from 'react-modal';
 import { PostDescription } from "./components/post-description/post-description";
 import { ActionCard } from "./components/action-card/actionCard";
+import Draggable from "react-draggable";
 
 const PostAction = ({ openPost }) => {
 
@@ -12,6 +13,7 @@ const PostAction = ({ openPost }) => {
     <ReactModal
       isOpen={openPost !== null}
       className="modal-blank"
+      portalClassName='react-modal'
       style={{
         overlay: {
           backgroundColor: 'rgba(100, 100, 100, 0.75)'
@@ -20,7 +22,11 @@ const PostAction = ({ openPost }) => {
     >
       <div className='container post-action-container'>
         <div className='container'>
-          <PostDescription post={openPost}/>
+          <Draggable
+            bounds='.react-modal>*'
+          >
+            <PostDescription post={openPost}/>
+          </Draggable>
           <span className='post-action-instructions'> Drag the card on the left to the desired action </span>
         </div>
         <div className='post-action-cards'>
