@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './post-action.scss';
 import { connect } from 'react-redux';
 import { selectOpenPost } from "./selectors";
@@ -8,12 +8,13 @@ import { ActionCard } from "./components/action-card/actionCard";
 import Draggable from "react-draggable";
 
 const PostAction = ({ openPost }) => {
-
+  const [dragging, changeDragging] = useState(false);
   return (
     <ReactModal
       isOpen={openPost !== null}
       className="modal-blank"
       portalClassName='react-modal'
+      ariaHideApp={false}
       style={{
         overlay: {
           backgroundColor: 'rgba(100, 100, 100, 0.75)'
@@ -24,6 +25,10 @@ const PostAction = ({ openPost }) => {
         <div className='container'>
           <Draggable
             bounds='.react-modal>*'
+            position={{x:0, y: 0}}
+            onStart={() => changeDragging(true)}
+            onStop={()=> changeDragging(false)}
+            defaultClassName={ dragging ? null : 'react-draggable-animate'}
           >
             <PostDescription post={openPost}/>
           </Draggable>

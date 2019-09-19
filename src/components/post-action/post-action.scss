@@ -36,3 +36,7 @@
   padding: 15px;
   cursor: pointer;
 }
+
+.react-draggable-animate {
+  transition: transform 0.5s;
+}
