@@ -1,6 +1,8 @@
 import React, {useState} from "react";
 import { DragLayer } from "react-dnd";
 import { PostDescription } from "../post-description/post-description";
+import { postAnimatingToogle } from "../../actions";
+import { connect } from 'react-redux';
 import './drag-layer.scss';
 
 class PostsDragLayerComponent extends React.Component {
@@ -36,6 +38,7 @@ class PostsDragLayerComponent extends React.Component {
       const r = (currentTransitionTime -startTransitionTime)/ transitionTime;
       if( r >= 1){
         this.setState({ animating: false});
+        this.props.toggleAnimation(false);
       }
       const photoR = transitionTime / transitionPhotos;
       x = lastOffset.x - r * ( lastOffset.x - initialOffset.x);
@@ -61,6 +64,7 @@ class PostsDragLayerComponent extends React.Component {
       initialOffset,
       currentOffset,
       isDragging,
+      toggleAnimation,
     } = this.props;
 
     const {
@@ -90,6 +94,7 @@ class PostsDragLayerComponent extends React.Component {
         startTransitionTime: time,
         currentTransitionTime: Date.now(),
       });
+      toggleAnimation(true);
     }
 
     if(!isDragging && !animating)
@@ -109,10 +114,14 @@ class PostsDragLayerComponent extends React.Component {
   }
 
 }
-
-export const PostDragLayer = DragLayer(monitor => ({
+const collect = monitor => ({
   item: monitor.getItem(),
   initialOffset: monitor.getInitialSourceClientOffset(),
   currentOffset: monitor.getSourceClientOffset(),
   isDragging: monitor.isDragging(),
-}))(PostsDragLayerComponent);
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  toggleAnimation: (on) => dispatch(postAnimatingToogle(on)),
+});
+export const PostDragLayer = DragLayer(collect)(connect(null,mapDispatchToProps)(PostsDragLayerComponent));

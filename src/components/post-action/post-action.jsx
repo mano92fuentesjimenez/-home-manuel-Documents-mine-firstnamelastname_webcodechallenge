@@ -6,8 +6,9 @@ import ReactModal from 'react-modal';
 import { PostDescription } from "./components/post-description/post-description";
 import { ActionCard } from "./components/action-card/actionCard";
 import { PostDragLayer } from "./components/dragLayer/drag-layer";
+import { selectIsAnimatingPost } from "./selectors";
 
-const PostAction = ({ openPost }) => {
+const PostAction = ({ openPost, isAnimatingPost }) => {
 
   return (
     <ReactModal
@@ -24,7 +25,7 @@ const PostAction = ({ openPost }) => {
       <PostDragLayer/>
       <div className='container post-action-container'>
         <div className='container'>
-            <PostDescription post={openPost}/>
+            <PostDescription post={openPost} classNames={isAnimatingPost && 'hide'}/>
           <span className='post-action-instructions'> Drag the card on the left to the desired action </span>
         </div>
         <div className='post-action-cards'>
@@ -37,6 +38,7 @@ const PostAction = ({ openPost }) => {
 
 const mapStateToProps = state => ({
   openPost: selectOpenPost(state),
+  isAnimatingPost: selectIsAnimatingPost(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

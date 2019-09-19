@@ -7,8 +7,9 @@ import { Comments } from "../../../../sharedComponents/comments/comments";
 import { Title } from "../../../../sharedComponents/title/title";
 import './post-description.scss'
 import { useDrag } from "react-dnd";
+import classnames from "classnames";
 
-export const PostDescription = ({ post }) => {
+export const PostDescription = ({ post, classNames }) => {
   const [{isDragging}, drag, preview] = useDrag({
     item: { type: 'post', post},
     collect: monitor => ({
@@ -21,7 +22,7 @@ export const PostDescription = ({ post }) => {
 
   const opacity = isDragging ? 0 : 1;
 
-  return <div ref={drag} className="post-card-container" style={{ opacity }}>
+  return <div ref={drag} className={classnames("post-card-container", classNames)} style={{ opacity }}>
       <ProfilePicture post={post}/>
       <div className="post-card-text-container">
         <Author post={post}/>

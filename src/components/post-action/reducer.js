@@ -1,7 +1,8 @@
-import { OPEN_POST_ACTIONS } from './constants';
+import { OPEN_POST_ACTIONS, POST_ANIMATION_TOGGLE, POST_ANIMATION_END } from './constants';
 
 const initialState = {
   openPost: null,
+  animatingPost: false,
 };
 
 export default function(state = initialState, action) {
@@ -10,6 +11,11 @@ export default function(state = initialState, action) {
       return {
         ...state,
         openPost: action.payload,
+      };
+    case POST_ANIMATION_TOGGLE:
+      return {
+        ...state,
+        animatingPost: action.payload,
       };
     default:
       return state;
