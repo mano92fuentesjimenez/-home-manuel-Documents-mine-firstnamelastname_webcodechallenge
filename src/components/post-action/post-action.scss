@@ -7,6 +7,24 @@
   position: absolute;
 }
 
+.post-action-container {
+  margin-top: 200px;
+  align-items: flex-start;
+  .post-action-instructions{
+    width: 120px;
+    color: white;
+    margin: 0 40px;
+    font-weight: 600;
+  }
+  .post-action-cards {
+    display: flex;
+    flex-direction: column;
+    > * {
+      margin-bottom: 20px;
+    }
+  }
+}
+
 .post-card-container {
   background: white;
   outline: none;

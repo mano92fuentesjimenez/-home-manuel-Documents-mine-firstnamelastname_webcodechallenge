@@ -18,9 +18,16 @@ const PostAction = ({ openPost }) => {
         }
       }}
     >
-      <PostDescription post={openPost}/>
-      <ActionCard actionName='email' actionText='Email to a friend' imgPath='/WarningSign.jpg'/>
-      <ActionCard actionName='link' actionText='Open on Reddit' imgPath='/WarningSign.jpg'/>
+      <div className='container post-action-container'>
+        <div className='container'>
+          <PostDescription post={openPost}/>
+          <span className='post-action-instructions'> Drag the card on the left to the desired action </span>
+        </div>
+        <div className='post-action-cards'>
+          <ActionCard actionName='email' actionText='Email to a friend' imgPath='/WarningSign.jpg'/>
+          <ActionCard actionName='link' actionText='Open on Reddit' imgPath='/WarningSign.jpg'/>
+        </div>
+      </div>
     </ReactModal>);
 };
 
