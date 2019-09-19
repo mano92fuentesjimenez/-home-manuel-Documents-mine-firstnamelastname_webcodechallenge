@@ -53,6 +53,7 @@ class PostsDragLayerComponent extends React.Component {
 
     const transform = `translate(${x}px, ${y}px)`;
     return {
+      opacity: 0.5,
       transform,
       WebkitTransform: transform,
     }
