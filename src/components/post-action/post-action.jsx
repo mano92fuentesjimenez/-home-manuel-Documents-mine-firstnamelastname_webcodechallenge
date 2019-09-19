@@ -5,10 +5,9 @@ import { selectOpenPost } from "./selectors";
 import ReactModal from 'react-modal';
 import { PostDescription } from "./components/post-description/post-description";
 import { ActionCard } from "./components/action-card/actionCard";
-import Draggable from "react-draggable";
 
 const PostAction = ({ openPost }) => {
-  const [dragging, changeDragging] = useState(false);
+
   return (
     <ReactModal
       isOpen={openPost !== null}
@@ -23,15 +22,7 @@ const PostAction = ({ openPost }) => {
     >
       <div className='container post-action-container'>
         <div className='container'>
-          <Draggable
-            bounds='.react-modal>*'
-            position={{x:0, y: 0}}
-            onStart={() => changeDragging(true)}
-            onStop={()=> changeDragging(false)}
-            defaultClassName={ dragging ? null : 'react-draggable-animate'}
-          >
             <PostDescription post={openPost}/>
-          </Draggable>
           <span className='post-action-instructions'> Drag the card on the left to the desired action </span>
         </div>
         <div className='post-action-cards'>

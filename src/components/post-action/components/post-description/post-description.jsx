@@ -6,10 +6,8 @@ import { Comments } from "../../../../sharedComponents/comments/comments";
 import { Title } from "../../../../sharedComponents/title/title";
 import './post-description.scss'
 
-export const PostDescription = (props) => {
-  const { post } = props;
-  return <div {...props} >
-    <div className="post-card-container">
+export const PostDescription = ({ post }) => {
+  return <div className="post-card-container">
       <ProfilePicture post={post}/>
       <div className="post-card-text-container">
         <Author post={post}/>
@@ -20,5 +18,4 @@ export const PostDescription = (props) => {
         <UpVotes post={post} showText={false}/>
       </div>
     </div>
-  </div>
 }
