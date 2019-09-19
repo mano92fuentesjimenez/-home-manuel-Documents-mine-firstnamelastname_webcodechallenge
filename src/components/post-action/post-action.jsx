@@ -5,6 +5,7 @@ import { selectOpenPost } from "./selectors";
 import ReactModal from 'react-modal';
 import { PostDescription } from "./components/post-description/post-description";
 import { ActionCard } from "./components/action-card/actionCard";
+import { DragLayer } from "./components/dragLayer/drag-layer";
 
 const PostAction = ({ openPost }) => {
 
@@ -20,6 +21,7 @@ const PostAction = ({ openPost }) => {
         }
       }}
     >
+      <DragLayer/>
       <div className='container post-action-container'>
         <div className='container'>
             <PostDescription post={openPost}/>
