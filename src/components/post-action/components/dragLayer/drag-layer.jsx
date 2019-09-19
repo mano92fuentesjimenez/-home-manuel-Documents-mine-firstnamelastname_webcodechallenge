@@ -83,7 +83,7 @@ class PostsDragLayerComponent extends React.Component {
       });
     }
 
-    if(isDragging) {
+    if(isDragging && currentOffset) {
       this.lastOffset = currentOffset;
     }
 
