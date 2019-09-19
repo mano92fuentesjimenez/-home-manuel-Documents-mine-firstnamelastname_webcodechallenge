@@ -3,11 +3,14 @@ import { POST_ACTION } from "./constants";
 
 function* applyAction(action) {
   const { actionName, post } = action.payload;
-
+  const link = `http://www.reddit.com${post.permalink}`;
   switch (actionName) {
     case 'link':
-      yield call(window.open, `http://www.reddit.com${post.permalink}`, '_blank');
-
+      yield call(window.open, link , '_blank');
+      break;
+    case 'email':
+      window.location.href = `mailto:user@example.com?subject=Check out this Reddit post&body=<a href="${link}"> ${link}</a>`;
+      break;
   }
 }
 
