@@ -1,45 +1,118 @@
-import React from "react";
-import { useDragLayer } from "react-dnd";
+import React, {useState} from "react";
+import { DragLayer } from "react-dnd";
 import { PostDescription } from "../post-description/post-description";
 import './drag-layer.scss';
 
-function getItemStyles(initialOffset, currentOffset) {
-  if (!initialOffset || !currentOffset) {
+class PostsDragLayerComponent extends React.Component {
+
+  state = {
+    animating: false,
+    wasDragging: false,
+    postAnimating: null,
+    initialOffset: null,
+    startTransitionTime: null,
+    currentTransitionTime: null,
+  };
+
+  transitionTime = 500;
+  transitionPhotos = 60;
+  lastOffset = { x: 0, y: 0};
+
+  getItemStyles(initialOffset, currentOffset) {
+    const {
+      animating,
+      startTransitionTime,
+      currentTransitionTime,
+    } = this.state;
+    const { lastOffset, transitionPhotos, transitionTime } = this;
+
+    let { x, y } = initialOffset;
+    if ( currentOffset ) {
+      x = currentOffset.x;
+      y = currentOffset.y;
+    }
+
+    if (animating) {
+      const r = (currentTransitionTime -startTransitionTime)/ transitionTime;
+      if( r >= 1){
+        this.setState({ animating: false});
+      }
+      const photoR = transitionTime / transitionPhotos;
+      x = lastOffset.x - r * ( lastOffset.x - initialOffset.x);
+      y = lastOffset.y - r * ( lastOffset.y - initialOffset.y);
+
+      setTimeout(() => {
+        this.setState({
+          currentTransitionTime: Date.now(),
+        });
+      }, photoR)
+    }
+
+    const transform = `translate(${x}px, ${y}px)`;
     return {
-      display: 'none',
+      transform,
+      WebkitTransform: transform,
     }
   }
-  let { x, y } = currentOffset;
-    const transform = `translate(${x}px, ${y}px)`
-  return {
-    transform,
-    WebkitTransform: transform,
+
+  render() {
+    const {
+      item,
+      initialOffset,
+      currentOffset,
+      isDragging,
+    } = this.props;
+
+    const {
+      wasDragging,
+      animating,
+      postAnimating,
+      initialOffset: initialOffsetFromState,
+    } = this.state;
+
+    if(isDragging && !wasDragging) {
+      this.setState({
+        wasDragging: true,
+        postAnimating: item.post,
+        initialOffset,
+      });
+    }
+
+    if(isDragging) {
+      this.lastOffset = currentOffset;
+    }
+
+    if(wasDragging && !isDragging){
+      const time = Date.now();
+      this.setState({
+        animating: true,
+        wasDragging: false,
+        startTransitionTime: time,
+        currentTransitionTime: Date.now(),
+      });
+    }
+
+    if(!isDragging && !animating)
+      return null;
+    const post = item ? item.post : postAnimating;
+    const offset = initialOffset || initialOffsetFromState;
+    return (
+      <div  className='drag-layer' >
+        <div
+          style={this.getItemStyles(offset, currentOffset)}
+        >
+          <PostDescription post={post}/>
+        </div>
+      </div>
+    )
+
   }
+
 }
 
-export const DragLayer = ({}) => {
-  const {
-    item,
-    initialOffset,
-    currentOffset,
-    isDragging,
-  } = useDragLayer(monitor => ({
-    item: monitor.getItem(),
-    initialOffset: monitor.getInitialSourceClientOffset(),
-    currentOffset: monitor.getSourceClientOffset(),
-    isDragging: monitor.isDragging(),
-  }));
-
-  if(!isDragging)
-    return null;
-
-  return (
-    <div className='drag-layer'>
-      <div
-        style={getItemStyles(initialOffset, currentOffset)}
-      >
-        <PostDescription post={item.post}/>
-      </div>
-    </div>
-  )
-};
+export const PostDragLayer = DragLayer(monitor => ({
+  item: monitor.getItem(),
+  initialOffset: monitor.getInitialSourceClientOffset(),
+  currentOffset: monitor.getSourceClientOffset(),
+  isDragging: monitor.isDragging(),
+}))(PostsDragLayerComponent);
