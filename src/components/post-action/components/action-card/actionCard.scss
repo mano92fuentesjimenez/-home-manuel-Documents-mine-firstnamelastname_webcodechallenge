@@ -1,4 +1,5 @@
 .action-card-container {
+  box-sizing: content-box;
   width: 200px;
   z-index: 1;
   img {
@@ -10,4 +11,7 @@
     font-size: 1.2em;
     font-weight: 500;
   }
+}
+.action-card-hover {
+  box-shadow: inset -1px -1px 9px 6px rgb(198, 210, 255);
 }
