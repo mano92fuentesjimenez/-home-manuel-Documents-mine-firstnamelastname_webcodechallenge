@@ -1,7 +1,12 @@
-import { OPEN_POST_ACTIONS, POST_ANIMATION_TOGGLE, POST_ACTION } from "./constants";
+import { OPEN_POST_ACTIONS, CLOSE_POST_ACTIONS, POST_ANIMATION_TOGGLE, POST_ACTION } from "./constants";
 
 export const openPostAction = (post) => ({
   type: OPEN_POST_ACTIONS,
+  payload: post,
+})
+
+;export const closePostAction = (post) => ({
+  type: CLOSE_POST_ACTIONS,
   payload: post,
 });
 

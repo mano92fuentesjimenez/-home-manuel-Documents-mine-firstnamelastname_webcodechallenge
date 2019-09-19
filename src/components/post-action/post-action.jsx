@@ -7,15 +7,21 @@ import { PostDescription } from "./components/post-description/post-description"
 import { ActionCard } from "./components/action-card/actionCard";
 import { PostDragLayer } from "./components/dragLayer/drag-layer";
 import { selectIsAnimatingPost } from "./selectors";
+import { closePostAction } from "./actions";
 
-const PostAction = ({ openPost, isAnimatingPost }) => {
-
+const PostAction = ({ openPost, isAnimatingPost, onClosePostActions }) => {
+  const closeModal= () => {
+    onClosePostActions()
+  };
+  if(openPost === null)
+    return null;
   return (
     <ReactModal
       isOpen={openPost !== null}
       className="modal-blank"
       portalClassName='react-modal'
       ariaHideApp={false}
+      onRequestClose={closeModal}
       style={{
         overlay: {
           backgroundColor: 'rgba(100, 100, 100, 0.75)'
@@ -42,6 +48,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
+  onClosePostActions: () => dispatch(closePostAction()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostAction)
